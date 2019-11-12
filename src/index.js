@@ -9,11 +9,15 @@ class Window extends React.Component {
       timestamp: null,
       website: null
     };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
+    console.log(event);
     alert(
-      "You have submitted the website! " +
+      "You have submitted the website " +
         this.state.website +
         " " +
         this.state.timestamp
@@ -36,23 +40,23 @@ class Window extends React.Component {
         <div className="title">One Step Ahead</div>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Website
+            <div className="form-title">Website</div>
             <input
               name="website"
               value={this.state.website}
               onChange={this.handleInputChange}
             />
           </label>
-          <br />
-          <br />
           <label>
-            Timestamp
+            <div className="form-title">Timestamp</div>
             <input
               name="timestamp"
               value={this.state.timestamp}
               onChange={this.handleInputChange}
             />
           </label>
+          <br />
+          <input type="submit" value="Submit" />
         </form>
       </div>
     );

@@ -1,8 +1,21 @@
 body {
   font: 14px Futura, sans-serif;
   margin: 20px;
-  height: 400px;
-  width: 300px;
+  display: inline-block;
+}
+
+label {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  text-align: left;
+  line-height: 1.8em;
+  margin-bottom: 0.8em;
+}
+
+input {
+  height: 1.5em;
+  justify-content: flex-end;
 }
 
 ol,
@@ -17,4 +30,6 @@ ul {
 
 .form-title {
   padding-bottom: 0.5em;
+  padding-right: 1em;
+  margin-right: auto;
 }

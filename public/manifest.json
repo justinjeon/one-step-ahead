@@ -5,10 +5,15 @@
   "description": "Scheduling sites to open automatically",
   "version": "0.0.1",
 
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
   "browser_action": {
     "default_popup": "index.html",
     "default_title": "Open the popup"
   },
-  "permissions": [],
+  "permissions": ["storage"],
   "content_security_policy": "script-src 'self' 'sha256-5+ND8D2b/DNaaxQR3m1RdQGh7MW7/RW6XuV60fmzmQQ='; object-src 'self'"
 }

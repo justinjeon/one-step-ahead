@@ -1,12 +1,64 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class Window extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      timestamp: null,
+      website: null
+    };
+  }
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  handleSubmit(event) {
+    alert(
+      "You have submitted the website! " +
+        this.state.website +
+        " " +
+        this.state.timestamp
+    );
+    event.preventDefault();
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const name = target.name;
+
+    this.setState({
+      [name]: target.value
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="title">One Step Ahead</div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Website
+            <input
+              name="website"
+              value={this.state.website}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <br />
+          <br />
+          <label>
+            Timestamp
+            <input
+              name="timestamp"
+              value={this.state.timestamp}
+              onChange={this.handleInputChange}
+            />
+          </label>
+        </form>
+      </div>
+    );
+  }
+}
+
+// ========================================
+
+ReactDOM.render(<Window />, document.getElementById("root"));

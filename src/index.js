@@ -1,3 +1,5 @@
+/*global chrome*/
+
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -16,12 +18,13 @@ class Window extends React.Component {
 
   handleSubmit(event) {
     console.log(event);
-    alert(
-      "You have submitted the website " +
-        this.state.website +
-        " " +
-        this.state.timestamp
-    );
+    if (this.state.website === null) {
+      alert("You must enter a website");
+    } else if (this.state.timestamp === null) {
+      alert("You must enter a time");
+    }
+
+    chrome.tabs.update({ url: "https://www." + this.state.website });
     event.preventDefault();
   }
 
@@ -42,6 +45,7 @@ class Window extends React.Component {
           <label>
             <div className="form-title">Website</div>
             <input
+              autoFocus
               name="website"
               value={this.state.website}
               onChange={this.handleInputChange}

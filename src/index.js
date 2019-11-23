@@ -22,9 +22,30 @@ class Window extends React.Component {
       alert("You must enter a website");
     } else if (this.state.timestamp === null) {
       alert("You must enter a time");
-    }
+    } else {
+      let website = this.state.website;
+      let timestamp = this.state.timestamp;
 
-    chrome.tabs.update({ url: "https://www." + this.state.website });
+      //Add entry to chrome storage
+      chrome.storage.sync.get(["queuedSites"], function(result) {
+        result.queuedSites.push(website + " " + timestamp);
+        chrome.storage.sync.set(
+          { queuedSites: result.queuedSites },
+          function() {}
+        );
+      });
+
+      chrome.alarms.create(website + " " + timestamp, {
+        when: Date.now() + timestamp * 1000
+      });
+      //Check if timestamp is before current time
+
+      //Get the current array of websites
+      //Append the
+      //map an alarm to the array entry
+      //chrome.alarm.create {certain time, }
+      // chrome.windows.create({ url: "https://www." + this.state.website });
+    }
     event.preventDefault();
   }
 

@@ -17,5 +17,10 @@ chrome.alarms.onAlarm.addListener(alarm => {
 
   let websitePos = alarm.name.indexOf(" ");
   let website = alarm.name.slice(0, websitePos);
-  chrome.windows.create({ url: "https://www." + website });
+
+  if (!website.includes("https://")) {
+    website = "https://".concat(website);
+  }
+
+  chrome.windows.create({ url: website });
 });
